@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component,OnInit } from '@angular/core';
 import { StationsService } from '../../service/stations.service';
-import { iStation } from '../../models/stations';
+import { iStation ,ResponceModel} from '../../models/stations';
 import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-home',
@@ -25,8 +26,10 @@ export class HomeComponent implements OnInit {
   }
 
   loadStations(){
-    this.stationSrv.getAllStation().subscribe((res:any)=>{
-      this.stationList = res.data;
+    this.stationSrv.getAllStation().subscribe((res:ResponceModel)=>{
+      this.stationList = res.data
+    }, error=>{
+      alert("error Occured" + JSON.stringify(error))
     })
   }
 

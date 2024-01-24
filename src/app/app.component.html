@@ -14,14 +14,23 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0  text-center ">
 
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold text-white  me-1" href="#">Home</a>
+                        <a class="nav-link fw-semibold text-white   me-1" href="#">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-semibold text-white  me-1" href="#">Trains</a>
                     </li>
                    
-                    <li class="nav-item">
-                        <a class="nav-link fw-semibold  text-white  me-1" href="#">Login</a>
+                    <li class="nav-item" *ngIf="!loggedUserData">
+                        <a class="nav-link fw-semibold  text-white  me-1 custom-pointer" (click)="openLogin()" >Login</a>
+                    </li>
+                    <li class="nav-item" *ngIf="!loggedUserData">
+                        <a class="nav-link fw-semibold  text-white  me-1 custom-pointer"  (click)="openSignup()">SignUp</a>
+                    </li>
+                    <li class="nav-item" *ngIf="loggedUserData">
+                        <a class="nav-link fw-semibold  text-white  me-1 custom-pointer" >{{loggedUserData?.phone}} </a>
+                    </li>
+                    <li class="nav-item" *ngIf="loggedUserData">
+                        <a class="nav-link fw-semibold  text-white  me-1 custom-pointer" (click)='logOut()' >Logout</a>
                     </li>
 
 
@@ -31,3 +40,75 @@
     </nav>
 </header>
 <router-outlet></router-outlet>
+
+
+<div class="modal mt-4" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Signup Pak Railway </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeSignup()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+                <div class="col-6">
+                    <label >First Name</label>
+                <input type="text" [(ngModel)]="registerObj.firstName" class="form-control ">
+                </div>
+                <div class="col-6">
+                    <label >Last Name</label>
+                <input type="text" [(ngModel)]="registerObj.lastName" class="form-control ">
+                </div>
+          </div>
+          <div class="row">
+                <div class="col-6">
+                    <label >Email</label>
+                <input type="text" [(ngModel)]="registerObj.email" class="form-control ">
+                </div>
+                <div class="col-6">
+                    <label >Phone No</label>
+                <input type="text" [(ngModel)]="registerObj.phone" class="form-control ">
+            </div>
+      </div><div class="row">
+            <div class="col-6">
+                <label >Password</label>
+            <input type="text" [(ngModel)]="registerObj.password" class="form-control ">
+            </div>
+  </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger " data-bs-dismiss="modal" (click)="closeSignup()">Close</button>
+          <button type="button" class="btn btn-success " (click)="onSignup()">SignUp</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal mt-4" id="loginModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Login Pak Railway</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeLogin()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+                <div class="col-12 ">
+                    <label >Phone No</label>
+                <input type="text" [(ngModel)]="registerObj.phone" class="form-control ">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 ">
+                    <label >Password</label>
+                <input type="text" [(ngModel)]="registerObj.password" class="form-control ">
+            </div>
+  </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger " data-bs-dismiss="modal" (click)="closeLogin()">Close</button>
+          <button type="button" class="btn btn-success " (click)="onLogin()">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
