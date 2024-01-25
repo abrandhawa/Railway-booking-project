@@ -24,7 +24,10 @@ export class AppComponent {
   loggedUserData:any;
 
   constructor(private trainSrv:TrainService){
-
+const localData = localStorage.getItem('trainUser');
+if(localData != null){
+  this.loggedUserData = JSON.parse(localData);
+}
   }
 
 
@@ -77,6 +80,15 @@ this.trainSrv.createPassenger(this.registerObj).subscribe((res:any)=>{
   }
 
   onLogin(){
-    
+    this.trainSrv.Login(this.registerObj).subscribe((res:any)=>{
+      if(res.result){
+        alert("Login Completed");
+        localStorage.setItem('trainUser', JSON.stringify(res.data));
+        this.loggedUserData =res.data;
+        this.closeLogin();
+      } else{
+        alert(res.message)
+      }
+    })
   }
 }

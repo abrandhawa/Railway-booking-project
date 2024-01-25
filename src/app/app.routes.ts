@@ -14,7 +14,7 @@ export const routes: Routes = [
         component:HomeComponent
     },
     {
-        path:'search',
+        path:'search/:fromStationId/:toStationId/:dateOfTravel',
         component:SearchComponent
     },
     {

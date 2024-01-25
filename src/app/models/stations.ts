@@ -41,3 +41,37 @@ export class iPassenger {
         this.password='';
     }
   }
+  export class Booking  {
+    bookingId: number;
+    trainId: number;
+    passengerId: number;
+    travelDate: string;
+    bookingDate: Date;
+    totalSeats: number;
+    TrainAppBookingPassengers: TrainAppBookingPassengers[];
+    constructor() {
+        this.TrainAppBookingPassengers = [];
+        this.bookingDate= new Date();
+        this.bookingId= 0;
+        this.passengerId= 0;
+        this.totalSeats =0;
+        this.trainId= 0;
+        this.travelDate = ''; 
+    } 
+  }
+
+  export class TrainAppBookingPassengers {
+    bookingPassengerId: number;
+    bookingId: number;
+    passengerName: string;
+    seatNo: number;
+    age: number;
+    constructor() { 
+        this.bookingPassengerId= 0;
+        this.bookingId= 0;
+        this.passengerName= '';
+        this.seatNo =0;
+        this.age= 0;  
+    }
+  }
+  
