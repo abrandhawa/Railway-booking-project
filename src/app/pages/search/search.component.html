@@ -43,7 +43,7 @@
                            {{train.arrivalTime}} | {{train.arrivalStationName}} |{{train.departureDate |date:'dd-MMM-yy'}}
                         </div>
                     </div>
-                    <button *ngIf="train.bookedSeats !== train.totalSeats" (click)="openBooking()" class="btn btn-success btn-sm"  data-bs-toggle="modal" data-bs-target="#bookmodel"  >Book Now</button>
+                    <button *ngIf="train.bookedSeats !== train.totalSeats" (click)="openBooking(train.trainId)" class="btn btn-success btn-sm"  data-bs-toggle="modal" data-bs-target="#bookmodel"  >Book Now</button>
                    <button *ngIf="train.bookedSeats == train.totalSeats" class="btn btn-danger btn-sm"  data-bs-toggle="modal" data-bs-target="#myModal">All Booked
                              </button>
                 </div>
@@ -57,28 +57,28 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Book Ticket</h5>
+          <h5 class="modal-title ">Book Ticket</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeBooking()"></button>
         </div>
         <div class="modal-body">
           <div class="row  ">
                 <div class="col-6 " >
                     <label >Passenger Name</label>
-                <input type="text"  class="form-control ">
+                <input type="text"  [(ngModel)]="bookingPassengers.passengerName"  class="form-control ">
                 </div>
 
                 <!-- [(ngModel)]="registerObj.lastName" -->
 
                 <div class="col-4">
                     <label >Age</label>
-                <input type="text"  class="form-control ">
+                <input type="text" [(ngModel)]="bookingPassengers.age"   class="form-control ">
                 </div>
                 <div class="col-2">
                     <option value=""></option>
-                    <button type="button" class="btn btn-primary mt-1  " >Add</button>
+                    <button type="button" class="btn btn-primary mt-1 " (click)="AddPassenger()" >Add</button>
                 </div>
           </div>
-          <table class="table">
+          <table class="table border  table-bordered ">
             <thead>
               <tr>
                 <th scope="col">Sr</th>
@@ -88,23 +88,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>d</td>
-                <td>d</td>
-                <td>d</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>t</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>1</td>
+              <tr *ngFor="let passenger of bokingObj.TrainAppBookingPassengers;let sr=index">
+                <td>{{sr+1}}</td>
+                <td>{{passenger.passengerName}}</td>
+                <td>{{passenger.age}}</td>
+                <td><button class="btn btn-danger " (click)="onRemove(sr)">Cancel Booking</button></td>
               </tr>
             </tbody>
           </table>

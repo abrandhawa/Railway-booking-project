@@ -44,6 +44,9 @@ export class SearchComponent implements OnInit {
       this.bokingObj.passengerId = this.loggedUserData.passengerID;
 
     }
+
+
+
   }
   ngOnInit(): void {
     this.loadStations();
@@ -59,8 +62,8 @@ export class SearchComponent implements OnInit {
     this.bokingObj.TrainAppBookingPassengers.splice(index, 1)
   }
 
-  openBooking() {
-    
+  openBooking(trainId:number) {
+    this.bokingObj.trainId = trainId;
     const model = document.getElementById('bookmodel');
     if (model != null) {
       model.style.display = 'block'
@@ -81,6 +84,7 @@ export class SearchComponent implements OnInit {
     })
   }
 
+  
 
 
   getAllTrains() {
