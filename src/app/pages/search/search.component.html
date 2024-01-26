@@ -21,10 +21,8 @@
         </div>
     </div>
 </div>
-<div class="container-fluid pt-2">
-    <p style="border: 1px solid;padding: 5px;margin-top: 5px;"><strong>{{trainsList.length}}</strong> Result Found For
-        <strong>Pune</strong>
-        to <strong>Nagpur</strong> on 12-12-2023</p>
+<div class="container-fluid pt-2" >
+    <p style="border: 1px solid;padding: 5px;margin-top: 5px;"><strong>{{trainsList.length}}</strong>  Shedule Found on Desired Date
     <div class="row">
         <div class="col-6 mt-2"  *ngFor="let train of trainsList">
             <div class="card">
@@ -44,7 +42,7 @@
                         </div>
                     </div>
                     <button *ngIf="train.bookedSeats !== train.totalSeats" (click)="openBooking(train.trainId)" class="btn btn-success btn-sm"  data-bs-toggle="modal" data-bs-target="#bookmodel"  >Book Now</button>
-                   <button *ngIf="train.bookedSeats == train.totalSeats" class="btn btn-danger btn-sm"  data-bs-toggle="modal" data-bs-target="#myModal">All Booked
+                   <button *ngIf="train.bookedSeats == train.totalSeats" class="btn btn-danger btn-sm"  data-bs-toggle="modal" data-bs-target="#">All Booked
                              </button>
                 </div>
             </div>
@@ -61,7 +59,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeBooking()"></button>
         </div>
         <div class="modal-body">
-          <div class="row  ">
+          <div class="row mb-2  ">
                 <div class="col-6 " >
                     <label >Passenger Name</label>
                 <input type="text"  [(ngModel)]="bookingPassengers.passengerName"  class="form-control ">
@@ -98,7 +96,7 @@
           </table>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger " data-bs-dismiss="modal" (click)="closeBooking()" >Close</button>
-          <button type="button" class="btn btn-success " >Confirm Booking</button>
+          <button type="button" class="btn btn-success " (click)="BookTicket()" >Book Ticket</button>
         </div>
       </div>
     </div>
